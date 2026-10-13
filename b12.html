@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 12 - Passport và Credit Card</title>
+
+    <!-- Thư viện jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .container {
+            width: 450px;
+            margin: auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0066cc;
+        }
+
+        .group {
+            margin-top: 20px;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .radio-group {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Passport & Credit Card</h2>
+
+        <!-- Passport -->
+        <div class="group">
+            <label><b>Passport:</b></label>
+
+            <div class="radio-group">
+                <input type="radio" name="passport" id="passportYes" value="Yes">
+                <label for="passportYes">Yes</label>
+
+                <input type="radio" name="passport" id="passportNo" value="No">
+                <label for="passportNo">No</label>
+            </div>
+
+            <div id="passportInfo" style="display: none;">
+                <label for="passportNumber">Enter Passport Information:</label>
+                <input type="text" id="passportNumber"
+                       placeholder="Nhập thông tin Passport">
+            </div>
+        </div>
+
+        <!-- Credit Card -->
+        <div class="group">
+            <label><b>Credit Card:</b></label>
+
+            <div class="radio-group">
+                <input type="radio" name="creditCard" id="cardYes" value="Yes">
+                <label for="cardYes">Yes</label>
+
+                <input type="radio" name="creditCard" id="cardNo" value="No">
+                <label for="cardNo">No</label>
+            </div>
+
+            <div id="cardInfo" style="display: none;">
+                <label for="cardNumber">Enter Credit Card Information:</label>
+                <input type="text" id="cardNumber"
+                       placeholder="Nhập thông tin Credit Card">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            // Xử lý Passport
+            $("input[name='passport']").change(function () {
+                if ($(this).val() == "Yes") {
+                    $("#passportInfo").show();
+                } else {
+                    $("#passportInfo").hide();
+                    $("#passportNumber").val("");
+                }
+            });
+
+            // Xử lý Credit Card
+            $("input[name='creditCard']").change(function () {
+                if ($(this).val() == "Yes") {
+                    $("#cardInfo").show();
+                } else {
+                    $("#cardInfo").hide();
+                    $("#cardNumber").val("");
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

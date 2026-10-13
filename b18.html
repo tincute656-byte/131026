@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 18 - DataTables</title>
+
+    <!-- CSS của DataTables -->
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- JavaScript của DataTables -->
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0066cc;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>QUẢN LÝ DANH SÁCH SINH VIÊN</h2>
+
+        <table id="studentTable" class="display">
+            <thead>
+                <tr>
+                    <th>Mã SV</th>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Tuổi</th>
+                    <th>Điểm</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>SV001</td>
+                    <td>Nguyễn Văn An</td>
+                    <td>an@gmail.com</td>
+                    <td>20</td>
+                    <td>8.5</td>
+                </tr>
+
+                <tr>
+                    <td>SV002</td>
+                    <td>Trần Thị Bình</td>
+                    <td>binh@gmail.com</td>
+                    <td>21</td>
+                    <td>9.0</td>
+                </tr>
+
+                <tr>
+                    <td>SV003</td>
+                    <td>Lê Văn Cường</td>
+                    <td>cuong@gmail.com</td>
+                    <td>19</td>
+                    <td>7.5</td>
+                </tr>
+
+                <tr>
+                    <td>SV004</td>
+                    <td>Phạm Thị Dung</td>
+                    <td> dung@gmail.com </td>
+                    <td>22</td>
+                    <td>8.0</td>
+                </tr>
+
+                <tr>
+                    <td>SV005</td>
+                    <td>Hoàng Văn Đức</td>
+                    <td>duc@gmail.com</td>
+                    <td>20</td>
+                    <td>6.5</td>
+                </tr>
+
+                <tr>
+                    <td>SV006</td>
+                    <td>Vũ Thị Hoa</td>
+                    <td>hoa@gmail.com</td>
+                    <td>21</td>
+                    <td>9.5</td>
+                </tr>
+
+                <tr>
+                    <td>SV007</td>
+                    <td>Đặng Văn Nam</td>
+                    <td>nam@gmail.com</td>
+                    <td>20</td>
+                    <td>7.0</td>
+                </tr>
+
+                <tr>
+                    <td>SV008</td>
+                    <td>Ngô Thị Lan</td>
+                    <td>lan@gmail.com</td>
+                    <td>19</td>
+                    <td>8.8</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            // Khởi tạo DataTables cho bảng
+            $("#studentTable").DataTable({
+                pageLength: 5,
+                lengthMenu: [5, 10, 25, 50],
+                order: [[0, "asc"]],
+                language: {
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ trong _TOTAL_ dòng",
+                    infoEmpty: "Không có dữ liệu",
+                    zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+                    emptyTable: "Bảng chưa có dữ liệu",
+                    paginate: {
+                        first: "Đầu",
+                        last: "Cuối",
+                        next: "Sau",
+                        previous: "Trước"
+                    }
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

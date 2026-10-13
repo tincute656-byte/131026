@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 13 - Hiện mật khẩu</title>
+
+    <!-- Thư viện jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0066cc;
+        }
+
+        .password-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        #password {
+            flex: 1;
+            min-width: 0;
+            padding: 12px;
+            border: none;
+            outline: none;
+        }
+
+        #togglePassword {
+            padding: 10px;
+            cursor: pointer;
+            background-color: white;
+            border: none;
+            font-size: 20px;
+        }
+
+        #togglePassword:hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Đăng nhập</h2>
+
+        <label for="password">Mật khẩu:</label>
+
+        <div class="password-box">
+            <input type="password" id="password"
+                   placeholder="Nhập mật khẩu">
+
+            <button type="button" id="togglePassword"
+                    aria-label="Hiện mật khẩu">👁</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#togglePassword").click(function () {
+
+                // Kiểm tra kiểu input hiện tại
+                var type = $("#password").attr("type");
+
+                if (type == "password") {
+                    // Hiện mật khẩu
+                    $("#password").attr("type", "text");
+                } else {
+                    // Ẩn mật khẩu
+                    $("#password").attr("type", "password");
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>

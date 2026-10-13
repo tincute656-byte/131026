@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 16 - Quản lý thông tin user</title>
+
+    <!-- Thư viện jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 15px;
+            max-width: 900px;
+        }
+
+        h3 {
+            font-size: 16px;
+            margin-top: 0;
+        }
+
+        input {
+            padding: 5px;
+            margin-right: 3px;
+        }
+
+        #name, #email {
+            width: 130px;
+        }
+
+        #birthdate {
+            width: 140px;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #message {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3>Quản lý thông tin user</h3>
+
+        <!-- Form nhập dữ liệu -->
+        <div>
+            <input type="text" id="name" placeholder="Name">
+
+            <input type="text" id="email" placeholder="Email Address">
+
+            <input type="date" id="birthdate">
+
+            <button type="button" id="addRow">Add Row</button>
+        </div>
+
+        <p id="message"></p>
+
+        <!-- Bảng thông tin -->
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Birthdate</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Các hàng mới sẽ được thêm vào đây -->
+            </tbody>
+        </table>
+
+        <!-- Nút xóa hàng -->
+        <button type="button" id="deleteRow">Delete Row</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            // Xử lý nút Add Row
+            $("#addRow").click(function () {
+
+                // Lấy dữ liệu từ các input
+                var name = $("#name").val().trim();
+                var email = $("#email").val().trim();
+                var birthdate = $("#birthdate").val();
+
+                // Kiểm tra không được để trống
+                if (name == "" || email == "" || birthdate == "") {
+                    $("#message").text("Vui lòng nhập đầy đủ thông tin!");
+                    return;
+                }
+
+                // Kiểm tra định dạng email
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailRegex.test(email)) {
+                    $("#message").text("Email không đúng định dạng!");
+                    return;
+                }
+
+                // Định dạng ngày tháng từ yyyy-mm-dd thành dd/mm/yyyy
+                var parts = birthdate.split("-");
+                var formattedDate =
+                    parts[2] + "/" + parts[1] + "/" + parts[0];
+
+                // Tạo hàng mới và thêm vào bảng
+                var newRow = $("<tr></tr>");
+
+                var checkbox = $("<input>", {
+                    type: "checkbox",
+                    class: "selectRow"
+                });
+
+                newRow.append($("<td></td>").append(checkbox));
+                newRow.append($("<td></td>").text(name));
+                newRow.append($("<td></td>").text(email));
+                newRow.append($("<td></td>").text(formattedDate));
+
+                $("#userTable tbody").append(newRow);
+
+                // Xóa dữ liệu input sau khi thêm
+                $("#name").val("");
+                $("#email").val("");
+                $("#birthdate").val("");
+
+                // Xóa thông báo
+                $("#message").text("");
+            });
+
+
+            // Xử lý nút Delete Row
+            $("#deleteRow").click(function () {
+
+                // Xóa các hàng được tích chọn
+                $("#userTable tbody .selectRow:checked")
+                    .closest("tr")
+                    .remove();
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>

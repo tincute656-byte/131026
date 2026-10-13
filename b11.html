@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 11 - Upload File</title>
+
+    <!-- Thư viện jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0066cc;
+        }
+
+        input {
+            margin-top: 15px;
+        }
+
+        #ketQua {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f4ff;
+            border-radius: 5px;
+            display: none;
+            overflow-wrap: anywhere;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Thông tin file đã chọn</h2>
+
+        <label for="fileUpload">Chọn file cần tải lên:</label>
+        <br>
+        <input type="file" id="fileUpload">
+
+        <div id="ketQua">
+            <p>Tên file: <span id="tenFile"></span></p>
+            <p>Phần mở rộng: <span id="moRong"></span></p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            // Xử lý khi người dùng chọn file
+            $("#fileUpload").change(function () {
+
+                // Lấy thông tin file được chọn
+                var file = this.files[0];
+
+                // Nếu chưa chọn file
+                if (!file) {
+                    $("#ketQua").hide();
+                    return;
+                }
+
+                // Lấy tên file
+                var tenFile = file.name;
+
+                // Tìm vị trí dấu chấm cuối cùng
+                var viTriCham = tenFile.lastIndexOf(".");
+
+                // Lấy phần mở rộng của file
+                var moRong = "";
+
+                if (viTriCham > 0) {
+                    moRong = tenFile.substring(viTriCham + 1);
+                }
+
+                // Hiển thị thông tin lên trang web
+                $("#tenFile").text(tenFile);
+                $("#moRong").text(moRong || "Không có phần mở rộng");
+
+                // Hiện kết quả
+                $("#ketQua").show();
+            });
+
+        });
+    </script>
+
+</body>
+</html>

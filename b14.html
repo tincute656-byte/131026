@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 14 - Toggle Theme</title>
+
+    <!-- Thư viện jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 50px;
+            background-color: #222;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #333;
+            transition: 0.3s;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        /* Nút toggle */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background-color: #777;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .slider::before {
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider::before {
+            transform: translateX(30px);
+        }
+
+        /* Theme sáng */
+        body.light {
+            background-color: #f2f2f2;
+            color: #222;
+        }
+
+        body.light .container {
+            background-color: white;
+            box-shadow: 0 0 10px #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Thay đổi giao diện</h2>
+
+        <p>Nhấn nút bên dưới để chuyển đổi giữa nền sáng và nền tối.</p>
+
+        <div class="toggle">
+            <span id="status">Off</span>
+
+            <label class="switch">
+                <input type="checkbox" id="toggleTheme">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#toggleTheme").change(function () {
+
+                if ($(this).is(":checked")) {
+                    // Toggle On: chuyển sang nền sáng
+                    $("body").addClass("light");
+                    $("#status").text("On");
+                } else {
+                    // Toggle Off: chuyển sang nền tối
+                    $("body").removeClass("light");
+                    $("#status").text("Off");
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
